@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #!/bin/bash
 
 pkgName=${1}
@@ -174,4 +174,4 @@ fi
 
 
 
->>>>>>> cf6c94c51b3ab4ca7c7a8741c02d25ad767c4d58
+
