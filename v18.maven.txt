@@ -1,0 +1,21 @@
+install java 23 and set environment variable.c/program file/Java/jdk23/bin(system variable)
+
+JAVA_HOME=c/program file/Java/jdk23(system variable)
+
+download eclipse and install it.
+
+file -> new -> maven project -> next -> default location(ok) -> all catalogs :- maven-archetype-quickstart 
+                -> GroupId: com.example, ArtifactId: devops-demo-project -> finish.
+
+pom.xml -> dependencies -> dependency -> google search: springboot started maven.
+                                         <dependency>
+                                          <groupId>org.springframework.boot</groupId>
+                                          <artifactId>spring-boot-starter</artifactId>
+                                          <version>3.3.4</version>
+                                         </dependency>
+
+******************************************************************************************
+life cycle of maven : default , clean , site (higher order)
+
+                      ex. mvn clean install
+
