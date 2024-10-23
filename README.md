@@ -1,2 +1,0 @@
-# devops-pramoth
-# devopsfiles-pramoth
