@@ -2,6 +2,14 @@ install java 23 and set environment variable.c/program file/Java/jdk23/bin(syste
 
 JAVA_HOME=c/program file/Java/jdk23(system variable)
 
+Feature	                Compiler                                    Interpreter
+                	                           
+Translation	        Entire code at once	                    Line by line
+Execution	        After full compilation	                    Immediately (during execution)
+Error detection	        All errors at compile time                  Errors reported line by line
+Speed of execution	Faster (machine code already generated)	    Slower (due to repeated interpretation)
+Output	                Machine code (executable)	            No separate executable, runs with interpreter
+
 download eclipse and install it.
 
 file -> new -> maven project -> next -> default location(ok) -> all catalogs :- maven-archetype-quickstart 
@@ -14,8 +22,67 @@ pom.xml -> dependencies -> dependency -> google search: springboot started maven
                                           <version>3.3.4</version>
                                          </dependency>
 
+select the project -> Run as -> Maven build... ->Goal : test/package/build/clean/verify/install ->Run
+
 ******************************************************************************************
 life cycle of maven : default , clean , site (higher order)
 
                       ex. mvn clean install
+
+********************************************************************************
+
+linux maven installation
+
+download java on Linux:
+
+sudo -i
+
+yum install java-1.8* -y
+
+     note: path=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
+
+export PATH=$JAVA_HOME/bin:$PATH
+
+download apache maven
+cd /opt
+   https://maven.apache.org/download.cgi
+wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
+
+tar -xvzf apache-maven-3.9.9-bin.tar.gz
+
+rm -rf apache-maven-3.9.9-bin.tar.gz
+
+export M2_HOME=/opt/apache-maven-3.9.9
+
+export PATH=$M2_HOME/bin:$PATH
+
+cd
+
+git clone https://github.com/Ramasamy3688/demo-project-pramoth.git
+
+cd <folder>
+
+mvn clean install
+
+not only created in the target folder, but also in the .m2/repository/com/example/demo-project-pramoth/0.0.1-SNOPSHOT
+
+ll
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
