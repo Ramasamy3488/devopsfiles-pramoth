@@ -1,3 +1,5 @@
+1.
+
 linux
 t2.medium
 
@@ -102,9 +104,21 @@ fi
 
 
 *****************************************************************************************************************************************
+2.
+
+systemctl edit jenkins --full
+   Environment = "8080"
+
+incase you forgot your password : /var/lib/jenkins->config.xml ->useSecurity(false)->systemctl restart jenkins
 
 manage jenkins -> if you not found users option -> go to security -> find security realm -> select jenkins own user databases->
 then apply and save.
+
+manage jenkins -> user ->ramasamy ->setting -> go directly password and confirm password and set -> apply and save.
+
+*******************************************************************************************************************************
+
+3.
 
 sonarcloud
 snyk
@@ -114,49 +128,59 @@ pipeline
 
 pre-req
 
-plugin: sonar scanner,quality gate,snynk security, owasp dependency check, pipeline:stage view.
+plugin: sonar scanner, sonar quality gate,snynk security, owasp dependency check, pipeline:stage view.
 
 conf : sonar-token and synk Api token, Tool config
 
 we have add stages in the sast scanning and SCA Scanning, DC-SCA
 
 ----------------------------------------------------------------------------------------------
+4.
 
-1. sonar cloud server sign in.
 
-2. create new organization. create manually ->suryateck-devops (github - all repository)-> select free -> create organization.
+ sonar cloud server sign in.
 
-3. create new project . address-book -> next -> previous version ->create
+ create new organization. create manually ->suryateck-devops -> select free -> create organization.
 
-4. information - > project key (suryateck-project_address-book), organization key(suryateck-project)
-   sonar way -> you can change gateway
+ create new project . address-book -> next -> previous version ->create
 
-5. generate token -> my account-> security -> create token(sonar-token)->copy token: d81ad7954239076dd6a349984f610b83a2676a94
+ information - > project key (suryateck-devops_address-book), organization key(suryateck-devops)
+                    sonar way -> you can change gateway
 
-6. snyk.io -> skip for now -> profile name -> account setting -> generate key : 66b85db3-2359-4688-9223-c2dd01d0923a
+ generate token -> my account-> security -> create token(Jenkins)->copy token: caf40ec0d8a37afc800a1ece59e4f326bef93d79
+
+ snyk - API
+ snyk.io -> skip for now -> profile name -> account setting -> generate key : 9a427f89-6a4c-4be6-993f-1f5b3addc370
 
 -------------------------------------------------------------------------------------------------------------------------
+5.
 
-1. Manage jenkins -> credential -> global -> secret text -> id:sonar-creds -> create
+ Manage jenkins -> credential -> global -> secret text -> id:sonar-creds -> create
 
-2. Manage jenkins -> credential -> global -> Snyk Api token - past token -> id : snyk-api-token ->create
+ Manage jenkins -> credential -> global -> Snyk Api token - past token -> id : snyk-api-token ->create
 
 
-3. Manage jenkins -> Tools -> Sonarqube scanne inastallation -> install automatically, name : scanner-tool, version: 9.9.9(latest version)
-                              snyk -> name: synk-tool, version : latest
+----------------------------------------------------------------------------------------------------------------------------
+6.
+
+ Manage jenkins -> Tools ->  maven -> Maven_Home, Sonarqube scanne inastallation -> install automatically, name : SonarQubeScanner, version: 9.9.9(latest version)
+                              snyk -> name: snyk-tool, version : latest
                               Dependency-Check -> Name:DC, install automatically(github) -> apply and save
 
 ---------------------------------------------------------------------------------------------------------
+7.
 
-system -> name: sonar-cloud, server URL: https://sonarcloud.io, authentication token: give the creds.
+system -> name: SonarQube_Server, server URL: https://sonarcloud.io, authentication token: give the creds.
 
 sonar-cloud
 ----------------------------------------------------------------------------------------------------------
+8.
 
-project -> webhooks -> create
+sonarcloud -> project -> click on the project -> webhooks -> create
 
 Name: sonarwebhook
 URL: http://3.110.165.214:8080/sonarqube-webhook
+
 ----------------------------------------------------------------------------------------------------------------
 
 pipeline
@@ -190,7 +214,7 @@ pipeline {
 
         stage('Sonar Scan') {
             steps {
-                withSonarQubeEnv('sonar-cloud') {
+                withSonarQubeEnv('SonarQube_Server') {
                     sh """
                     "${SCANNER_HOME}/bin/scanner-tool" \
                     -Dsonar.projectName=suryateck-project_address-book \
@@ -220,7 +244,7 @@ pipeline {
             steps {
                 snykSecurity(
                     snykInstallation: 'snyk_tool',
-                    snykTokenId: 'snyk-api-token',
+                    snykTokenId: 'snyk-api',
                     failOnError: false,
                     failOnIssues: false,
                     monitorProjectOnBuild: true
