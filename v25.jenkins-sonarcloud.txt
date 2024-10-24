@@ -359,7 +359,7 @@ pipeline {
             steps {
                 snykSecurity(
                     snykInstallation: 'snyk-tool',
-                    snykTokenId: 'snyk-api',
+                    snykTokenId: 'snyk-api-token',
                     failOnError: false,
                     failOnIssues: false,
                     monitorProjectOnBuild: true
@@ -383,3 +383,38 @@ pipeline {
 
     }
 }
+
+
+
+-----------------------------------------------------------------------------------------------------------
+
+
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        echo 'Building...'
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'Testing...'
+        snykSecurity(
+          snykInstallation: 'MySnykInstallation',  // Replace with your Snyk installation name
+          snykTokenId: 'snyk-api-token',  // Replace with your Snyk token (from Jenkins credentials)
+          monitorProjectOnBuild: true,    // Example additional parameter to monitor the project
+          organization: 'my-org',         // Replace with your Snyk organization, if needed
+          projectName: 'my-project'       // Replace with your project name
+        )
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying...'
+      }
+    }
+  }
+}
+
