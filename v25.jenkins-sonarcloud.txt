@@ -128,7 +128,7 @@ pipeline
 
 pre-req
 
-plugin: sonar scanner, sonar quality gate,snynk security, owasp dependency check, pipeline:stage view.
+plugin: sonarqube scanner, quality gate, snynk security, owasp dependency check, pipeline:stage view.
 
 conf : sonar-token and synk Api token, Tool config
 
