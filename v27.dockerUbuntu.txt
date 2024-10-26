@@ -1,0 +1,144 @@
+
+create ubuntu and t2.medium server
+
+install docker on ubuntu . go to Docker Doc official document.
+
+sudo -i
+
+# Add Docker's official GPG key:
+sudo apt-get update
+
+sudo apt-get install ca-certificates curl
+
+sudo install -m 0755 -d /etc/apt/keyrings
+
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+-------------------------------------------------------
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+--------------------------------------------------------
+
+command -v docker  --- shows the docker path.
+
+dpkg -l | grep docker  --- shows the package installed
+
+------------------
+
+install through script
+
+You can run the script with the --dry-run option to learn what steps the script will run when invoked:
+
+
+ curl -fsSL https://get.docker.com -o get-docker.sh
+ sudo sh ./get-docker.sh --dry-run
+
+--------------------------------
+
+Uninstall Docker Engine
+
+Uninstall the Docker Engine, CLI, containerd, and Docker Compose packages:
+
+
+ sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+Images, containers, volumes, or custom configuration files on your host aren't automatically removed. To delete all images, containers, and volumes:
+
+
+ sudo rm -rf /var/lib/docker
+ sudo rm -rf /var/lib/containerd
+
+----------------------------------------------------------------------------------
+
+user and group will be created.
+
+docker create group only not user
+
+cat etc/group | grep docker
+
+cat etc/passwd | grep docker
+
+-------------------------------------------------
+
+docker info
+
+id
+
+docker info  --- from normal user shows only client.
+
+usermod -aG docker ubuntu
+
+----------------------------------------------------
+
+docker.sock : get permission
+
+gives connection 
+
+docker server and cli in same machine called non-network uniq sock.
+
+if docker server and cli in same machine --ssh sock or dll sock.
+
+sudo docker info 
+
+docker info
+
+sudo chmod 777 /var/run/docker.sock
+
+docker info
+
+--------------------------------------------------------------
+
+docker hub --- image repository.
+
+docker hub -> explore -> docker official image.
+
+docker images
+
+docker pull nginx
+
+docker build -t dockimg .
+
+docker run -it -d --name docon -p 8080:80 docimg
+
+----------------------------------------------------------------
+
+docker images or docker image ls
+
+docker ps
+
+docker ps -a
+
+docker stop <id or name>
+
+exited state(0) -> stoped properly
+
+exited state(other then 0) -> stoped by some issue.
+
+docker inspect <id>
+
+curl <containerIP>
+
+hostname
+
+sudo hostname docker
+
+restart
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
