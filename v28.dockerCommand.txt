@@ -1,0 +1,57 @@
+docker create -it -d --name container dockerimage  --- create but not up and running
+
+docker start <id>
+
+docker stop <id>
+
+docker rm -f <id>
+
+docker run-it --name container --hostname demo dockerimage
+
+ip a
+
+apt install iproute2
+
+docker exec -it id bash
+
+docker run --rm -it --name ubuntucon ubuntu
+
+curl <ipaddress>
+
+port forwarding
+
+docker run -d -it --name nginixcon -p 8090:80 ubuntu
+
+change inbound rule -> security group to allow the port
+
+curl <ip>
+
+---------------------------------------------------------------
+
+mysql
+----
+
+docker run -d -it --name mysqlcon --hostname mysql -e MYSQL_ROOT_PASSWORD=test123 -e MYSQL_ROOT_HOST='%' mysql ->
+-> container ip = 172.17.0.4 <ipaddress>
+
+mysql
+
+apt install mysql-client-core-8.0
+
+docker inspect <conid>
+
+mysql -h <ipaddress> -u root -ptest123
+
+show databases;
+
+------------------------------------------------------------------------
+
+wordpress container:
+-------------------
+
+docker run -d -it --name wordpress -e WORDPRESS_DB_HOST=172.17.0.4 -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=test123 -e WORDPRESS_DB_NAME=devops -p 9090:80 wordpress
+
+
+
+
+
