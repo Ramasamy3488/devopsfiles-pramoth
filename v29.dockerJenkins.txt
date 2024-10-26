@@ -1,0 +1,48 @@
+
+Docker Jenkins
+
+ecr, nexus --> mostly we use.
+
+dockerhub -> jenkins image -> docker pull jenkins-not this -> docker pull jenkins/jenkins:lts
+
+docker run -d -it jenkinscon -p 8080:8080 jenkins/jenkins:lts
+
+docker log <imgid/or imgname>
+-------------------------------------------------------
+
+docker exec -it <conid or name> bash
+
+cat /var/jenkins_home/secrets/initialAdminPassword
+
+       or
+docker exec -it <conid or name> cat /var/jenkins_home/secrets/initialAdminPassword
+
+--------------------------------------------------------------
+
+create container 
+
+docker inspect containerID
+
+   ip address
+
+slave container ipaddress.
+
+-------------------------------------------------------------------
+
+Restart policy
+--------------
+
+ 1. never             ---  default policy. it don't try to start the container again. exited(>=0) docker deamon(brain)  exited(143)
+ 2. always            ---  attempt to start , if exited(>=0), deamon will start the container again. docker container update --restart always jenkins.
+                           docker inspect jenkinscon. systemctl stop docker. systemctl start docker. only one retry
+ 3. on-failure        ---  attempt to start , if exited(>0), deamon will try to start the container again. if we stop manually exited(0), it won't try to start.
+                          we can set max retry. docker container update --restart on-failure:5 jenkins . we generally use this.
+ 4. unless-stoped     --- exited(0), docker won't do anything. other than exited(>0) it will try to start.
+
+
+
+
+
+
+
+
