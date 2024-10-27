@@ -41,7 +41,7 @@ docker logout
 
 docker login -u ramasamy123
 
-dckr_pat_qIJk 
+docker token
 
 
 docker scout -- checks Vulnerabilities - docker hub -> repository -> setting -> Docker Scout image analysis
