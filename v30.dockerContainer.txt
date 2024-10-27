@@ -1,0 +1,74 @@
+docker image history nginx
+
+docker info
+
+docker ps -s     --- shows size of the container
+
+docker container ps -a
+
+docker deamon checks --- brain of the docker
+
+/var/lib/docker
+
+/var/lib/docker/container
+
+/var/lib/docker/image
+
+docker login -u ramasamy123
+
+docker image tag ubuntu:latest ramasamy123/ubuntu:v1
+
+docker push ramasamy123/ubuntu:v1
+
+
+docker image prune -a
+
+docker rmi -f <imgid/imgname>
+
+docker pull ramasamy123/ubuntu:v1
+
+docker image history ramasamy123/ubuntu:v1
+
+ll
+
+.docker
+
+config.json
+
+docker hub -> account setting -> Personal access tokens -> Create access token -> name: docker-demo, read write delete
+
+docker logout
+
+docker login -u ramasamy123
+
+dckr_pat_qIJkYONnsr2c_Tz9P2hix2lJHIE  
+
+
+docker scout -- checks Vulnerabilities - docker hub -> repository -> setting -> Docker Scout image analysis
+
+Dockerfile
+
+war -> tomcat ->   deploy -> image
+
+docker run -it -d --name mycon -p 8080:80 myimg
+
+FROM
+MAINTAINER
+ENV
+ARG
+RUN
+COPY
+ADD
+WORKDIR
+LABLE 
+VOLUME
+SHELL
+HEALTHCHECK
+EXPOSE
+STOP SIGNAL
+CMD
+ENTRYPOINT
+
+nexus or aws ECR
+
+------------------------------------------------------------------------------------------------------------   
