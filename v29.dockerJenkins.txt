@@ -39,6 +39,15 @@ Restart policy
                           we can set max retry. docker container update --restart on-failure:5 jenkins . we generally use this.
  4. unless-stoped     --- exited(0), docker won't do anything. other than exited(>0) it will try to start.
 
+applying the reset policy 
+
+we can apply while creating container     --- docker run -it -d --name mycon --restart always -p 8080:80 jenkins
+we can update the policy                  --- docker container update --restart always jenkins . container should be up and running atleast 10s.
+
+----------------------------------------------------------------------------------
+
+
+
 
 
 
