@@ -1,0 +1,31 @@
+ARG VERSION="24.04"
+FROM ubuntu:${VERSION}
+MAINTAINER ravipramoth <ravipramoth@gmail.com> you can contact run support 
+SHELL ["/bin/bash","-c"]
+RUN apt-get update && apt-get install nginx curl -y  
+ENV MY_SQL_ENDPOINT=123456
+LABEL kind=Production 
+LABEL contact=ravipramoth email=ravipramoth@gmail.com
+SHELL ["/bin/sh","-c"]
+WORKDIR /usr/share/nginx/html/
+COPY --chown=www-data:www-data index.html demo.html ./
+WORKDIR /var/www/html/
+COPY --chown=www-data:www-data index.html demo.html ./
+WORKDIR /tmp
+VOLUME /usr/share/nginx/html/ 
+ADD compress.tar.gz /tmp
+EXPOSE 80
+ENTRYPOINT  ["nginx", "-g"]
+CMD ["daemon off;"]
+HEALTHCHECK cmd curl -f http://localhost || exit 1
+
+docker volume ls
+
+docker volume inspect <volumeID>
+
+
+
+watch docker ps
+
+
+docker image inspect <imgname>
