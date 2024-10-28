@@ -1,0 +1,161 @@
+Never -- Container default policy Exit >=0 Docker daemon it wont star the docker 
+always --exited valus is >=0  -- Docker will try to start that container again --- Container only once try 
+on-failure >0 -- > if the value is >0 , if we stop container manually -- Docker daemonwill not start container - maximum retry : 10 
+unless-stopped  - 0 as status docket wont do anything- Start container unless other thatn 0 -- > it will try to start container 
+
+
+Note : 
+
+At the time of creating container specify 
+After container specify the container restart policy 
+
+setting up a policy -- > Your container should be up and running for atleat 10seconds 
+
+
+Dpcler image -- > Base Image -O/s -- Ubuntu/ linux/ bitname /alpine 
+
+OSS - Open source s/w  
+
+Private repo -- We need to auth pull image 
+
+
+AWS ECR
+Azure CR
+Google CR 
+gitlab Registery 
+jfrog 
+nexus -- Save images 
+
+
+
+docker pull nginx --- CLi 
+Docker daemon -- Local system -- if available it show 
+hub.docker.com -- Pull local system  
+
+/var/lib/docker
+
+Dockerfile ---> to build our custom image / container 
+
+war --> tomcat -- > Deploy -- Image  -- imageabc 
+
+docker run -d -it --name myapplication -P /p  imageabc  
+
+
+-- 
+Dockerfile -- default name to custom image 
+-----------------------------------------------------------------------
+FROM --- base image 
+Maintainer  --- Just to provide overview for your Dockerfile 
+ENV --- > password / Endpoint 
+ARG --- > Docker file 1 command  -- > It will be used to set value at image level 	
+RUN --- Install packages -- create dir rm 
+		/bin/sh -c linux  
+		cmd /s /c ----> Run in windows cmd 
+		exectable "Parm1" "param 2" 
+		apt-get "nginx" "curl" "-y" "wget" "iproute2"
+COPY -- Local system -- > Container 
+chown of the file www-data 
+COPY mutiple file in a single command we can pass 
+ADD --- > wget --> Some file it automatically decompress for us 
+CMD -- > Same operation but where ever we can specify - Easily we can overide this command during runtime 
+entrypoint --> I Set of command it will run -- > Container Created -- Default Entrypoint it will run  
+Workdir - default Working dir
+Label --- Key value pairs -- Data : Same as maintainer but 
+volume ---- > in case container deleted -- We can able to recover the data from the voulume 
+Dynamic and static
+
+Dynamic Volume -- It will asing own name ID -- 
+
+shell ----  In windows container we will specify to change the Cmd to Powershell  SHELL ["CMD","/s", "/c"]
+Linux/unix SHELL ["/bin/bash", "-c"] 
+healthcheck --- > 
+
+--interval =30s default  
+--timeout = 30s default 
+-reteries = 3 default 
+-startperiod =0s 
+  
+expose ---- > Docment purpose ---> 80 --- > TCP /UDP --- TCP  p / P 
+stop signal --- > SIGKILL 
+SIGTRM
+SIGSTOP 	
+
+USER --- > Showing project --- > 
+
+USER NAme b
+----------------------------------
+
+Dockerfile --- Key value 
+
+CAPS 
+
+docker Prune -- Tag is not be there & it should not assign to container
+  
+\------------------------------
+
+
+ARG VERSION="24.04"
+FROM ubuntu:${VERSION}
+LABEL Contact="Pramoth ravipramoth@gmail.com"
+LABEL Region="Production"
+RUN apt-get update && apt-get install nginx curl -y 
+RUN useradd -m -d /home/nginx -u 1002 -s /bin/sh nginx 
+RUN mkdir /var/cache/nginx && chown -R nginx:nginx /var/cache/nginx /
+            && chown -R nginx:nginx /var/lib/nginx /
+            && chown -R nginx:nginx /var/log/nginx
+RUN touch /var/run/nginx.pid && chown -R nginx:nginx /var/run/nginx.pid 
+WORKDIR /usr/share/html/
+COPY --chown=nginx:nginx index.html demo.html ./
+COPY --chown=nginx:nginx index.html demo.html /var/www/html/
+EXPOSE 80 
+ENTRYPOINT ["nginx","-g"]
+CMD ["daemon off;"]
+USER nginx
+HEALTHCHECK cmd curl -f http://localhost || exit 1 
+
+
+---------------------------------------------------------------------
+
+docker system df
+
+docker system df -v
+
+--------------------------
+
+docker ps -s
+
+docker volume ls
+
+dangling image --- <none> --- untag image
+
+docker Prune -- Tag is not be there & it should not assign to container
+
+docker image prune
+
+docker volume prune
+
+---------------------------------------------------
+
+docker search busybox
+
+docker search --help
+
+docker search busybox --limit 5
+
+docker container commit <conID> myimage:v1
+
+docker image history myimage:v1
+
+-------------------------------------------------------------------
+
+docker export <conName>  > myimg.tar    --- container to tar file
+
+docker import myimg.tar myimg:v1    --- tar file to image
+
+---------------------------------------------------------------------
+
+
+
+
+
+
