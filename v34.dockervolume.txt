@@ -1,0 +1,81 @@
+storage
+
+volume mount 
+     Host - Docker Area -- /var/lib/docker/  --> volume/demo/datafile   ---  we use relative.
+
+Bind mount
+    /demo  --> this folder can use as volume
+    we should specify the absolute path. docker run -d -it --name demo -v /volume/docker/demo/data:/usr/share/nginx/html/ nginx
+    sensitive data -- bind mount. 
+tmpfs mount
+    temp storage -- RAM -- Faster acess  --> tempraruary perpose --> if container restart, data will be lost.
+    just for tmp data. never used most.
+
+-----------------------------------------------------------------------
+
+docker volume create -- API -- Docker Daemon
+
+/var/lib/docker
+
+one volume can be attached to multiple container.
+
+multiple volumes can be attached to a single container.
+
+we can create volume in run time
+
+we can avoid to write data in the particular path - read only
+
+Nginx - /usr/share/nginx/html/  --> volume -> in case container i can set read only
+
+volume ---> -v or --mount[swarm]
+
+we can create static(docker create volume) and dynamic volume(run time)
+
+we will give relative path --> docker run -d -it --name demo -v nginx:/usr/share/nginx/html/ nginx
+
+--------------------------------------------------------------------------------
+
+docker 
+  create
+  inspect
+  prune
+  rm
+  ls
+  system df
+
+
+------------------------------------------------------------------
+
+docker volume create nginx
+
+docker run -d -it --name demo -p 8080:80 -v nginx:/usr/share/nginx/html nginx
+
+cd /var/lib/docker/volumes/nginx/_data/   
+
+you can change index.html
+
+
+docker run -d -it --name demo -p 8080:80 -v nginx:/usr/share/nginx/html:ro nginx    --- read only. can't change in container
+    to maintain static content.
+----------------------------------------------------------------------------------------------------
+
+
+VOLUME TO JENKINS CONTAINER(create in run time)
+
+docker run -it -d --name jenkins -v jenkins:/var/jenkins_home -p 8080:8080 jenkins/jenkins:lts
+
+docker ps
+
+password: docker logs <container Name> or get from inside the container.
+
+create pipeline job:
+
+docker container inspect conName
+
+docker image history
+
+
+
+
+
+   
