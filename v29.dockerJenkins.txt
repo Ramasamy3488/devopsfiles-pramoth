@@ -7,8 +7,10 @@ dockerhub -> jenkins image -> docker pull jenkins-not this -> docker pull jenkin
 
 docker run -d -it jenkinscon -p 8080:8080 jenkins/jenkins:lts
 
-docker log <imgid/or imgname>
+docker logs <imgid/or imgname>
 -------------------------------------------------------
+
+docker logs <conID>
 
 docker exec -it <conid or name> bash
 

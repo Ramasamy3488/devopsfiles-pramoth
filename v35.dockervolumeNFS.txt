@@ -1,0 +1,47 @@
+mkdir /appdata-demo
+
+docker run -it -d --name nginx -v /appdata-demo:/usr/share/nginx/html -p 8080:80 nginx
+
+    by default nginx has index.html and 50x.html in this path: /usr/share/nginx/html
+    but when we attached bind volume /appdata-demo, no file will be there. Because no file in /appdata-demo
+
+----------------------------------------------------------------------------------------------------------------
+
+bind mount : unmanged volume
+ The main purpose of bind mounts is to share data between the host and container or to persist data across container restarts.
+
+id for root = 0;
+
+id for jenkins = 1000;
+
+mkdir /jenkins-data
+
+docker run -it -d --name jenkins -v /jenkins-data:/var/jenkins_home -p 8080:8080 jenkins/jenkins:lts
+
+docker logs <conName>
+
+for jenkins
+
+cat /etc/passwd
+
+first user 1000
+
+chown -R 1000:1000 /jenkins-data/
+
+docker run -it -d --name jenkins -v /jenkins-data:/var/jenkins_home -p 8080:8080 jenkins/jenkins:lts
+
+cd /jenkins-data
+
+ll
+
+all files and configurations will be there.
+
+nginx run in root
+
+jenkins run in jenkins user.
+
+
+aws ec2 run-instances --image-id ami-07d34981bf0a46e29 --count 1 --instance-type t2.micro --key-name oct29 --security-group-ids sg-0c099be4a5130ac66 --subnet-id subnet-00f781f30151e1e0c
+
+
+
