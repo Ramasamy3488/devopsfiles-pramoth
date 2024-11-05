@@ -41,6 +41,17 @@ nginx run in root
 jenkins run in jenkins user.
 
 
+apt-get install nfs-kernal-server -y
+
+mkdir /jenkins-data
+
+
+
+
+
+
+
+
 aws ec2 run-instances --image-id ami-07d34981bf0a46e29 --count 1 --instance-type t2.micro --key-name oct29 --security-group-ids sg-0c099be4a5130ac66 --subnet-id subnet-00f781f30151e1e0c
 
 

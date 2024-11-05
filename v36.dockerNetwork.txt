@@ -1,0 +1,89 @@
+Docker Network
+
+pre-defined network
+
+bridge  --- by default network
+host
+none
+overlay
+
+user-defined network
+
+
+
+for nginx container
+
+apt-get update
+
+apt-get install iproute2 iputils-ping -y
+
+ping 172.17.0.3
+
+docker network --help
+
+docker network connect --help
+
+docker network create --subnet 10.10.0.0/16 --gateway 10.10.0.1 devopsnetwork
+
+docker network ls
+
+docker run -it -d --name nginx2 nginx
+
+docker run -it -d --name nginx --network devopsnetwork nginx
+
+docker network inspect bridge
+
+isolated
+
+docker network connect devopsnetwork nginx2 
+
+docker network inspect devopsnetwork
+
+ping 10.10.0.3  --- virtual LAN
+
+ping devops2(containername)   ---  only with user defined network.
+
+apt-get install vim -y
+
+vi /etc/hosts
+
+ipaddress      name(nginx2)
+
+docker network disconnect devops nginx2
+
+docker network create devops1
+
+docker network inspect devops1
+
+docker network prune 
+
+default network 172.17.0.15   --- only for default network
+
+user defined network 10.10.0.50 --- for user defined network
+
+docker run -it -d --name demo --ip 172.17.0.15 --network devopsnetwork nginx ---> error
+
+docker run -it -d --name demo --ip 10.10.0.15 --network devopsnetwork nginx
+
+docker run -it -d --name demo1 --ip 10.10.0.15 --network devopsnetwork nginx  --> already in use
+
+docker network rm devopsnetwork
+
+HOST NETWORK
+
+docker run -it -d --name host-demo --network host nginx
+
+curl localhost
+
+docker logs containerName
+
+netstat -plant
+
+
+
+
+
+
+
+
+
