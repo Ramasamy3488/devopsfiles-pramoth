@@ -1,0 +1,32 @@
+echo $?  --- last command's state. 0 commands executed successfully.
+
+${#} --- receive number of input parameter. echo ${#}
+
+exit 1, exit 2, exit 3
+
+-------------------------------------------------------------------------------------------------
+
+./script.sh Hello
+
+echo ${1} = Hello
+
+echo ${1} ---- ${1} is a variable that represents the first argument given to the script.
+
+echo $(id -u) --- user ID(UID). 1001, 0 for root user.
+
+command -v git  --- /usr/bin/git
+, command -v wget --- /usr/bin/wget,
+
+command -v httpd --- no result means it isn't installed.
+
+command -v ls ---- /bin/ls
+
+1>/dev/null --- dont save output. 2>&1 or 2>/dev/null -- dont save error.
+
+---------------------------------------------------------------------------------------------------------
+
+$?  --- error code --0 
+
+3---package there but not started. inactive
+4--package is not there.
+
