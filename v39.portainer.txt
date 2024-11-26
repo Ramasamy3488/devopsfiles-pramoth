@@ -1,0 +1,71 @@
+
+ubuntu t2.medium server
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh 
+
+docker run -it -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.21.4
+
+ip:9443
+
+inside container
+
+cat /etc/os-release
+
+
+
+set password
+
+docker get started-> live connect- >
+
+add container-> con name demo,  nginx image
+
+------------------------------------------------------------------------------------------------
+
+DOCKER NETWORK --- giving customised network -- bridge.
+
+
+ip link add <networinterfacekname> type bridge        ---  network interface
+
+ip addr add 10.200.0.1/16 dev <networinterfacekname> 
+
+sudo ip link set <networinterfacekname> up
+
+vi /etc/docker/deamon.json
+
+{
+   "bridge":"<networinterfacekname>"
+}
+
+systemctl start docker
+
+docker run -it -d --name demo123 nginx
+
+
+
+------------------------------------------------------------------------------------------------
+
+
+DOCKER COMPOSE -- archistration tool -- imprative and declarative
+
+imperative -- run directly like docker create
+declarative -- run the yaml file using docker compose tool
+
+docker info 
+
+yaml
+
+ version
+ service
+ networks
+ volumes
+ secrets
+ congigs
+
+
+vi  --- developed by python
+
+--------------------------------------------------------------------------------------------------
+
+
+
